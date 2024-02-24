@@ -23,8 +23,8 @@ export default function TimerPage() {
         setTasks(getTasks());
     }
 
-    const deleteTaskAndRefreshList = (uid: string) => {
-        deleteTask(uid);
+    const deleteTaskAndRefreshList = (uid: string, forceDelete?: boolean) => {
+        deleteTask(uid, forceDelete);
         setTasks(getTasks());
     }
 

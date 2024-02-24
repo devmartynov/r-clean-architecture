@@ -34,7 +34,7 @@ export default function Timer({addTask, deleteTask, markTaskAsFinished}: ITimerP
     };
 
     const onDeleteTimer = () => {
-        deleteTask(contextTaskRef.current!.uid);
+        deleteTask(contextTaskRef.current!.uid, true);
         reset(undefined, false);
         setTaskName('');
         contextTaskRef.current = null;
