@@ -1,8 +1,6 @@
-import {ITaskEntity} from '@/domain/entities/task.ts';
-
-type TaskDateGroup = string;
+import {IGroupedTasks} from '@/domain/use-cases/use-cases.types.ts';
 
 export type ITimerListProps = {
-    items: Record<TaskDateGroup, ITaskEntity[]>,
+    items: IGroupedTasks,
     onDelete: (uid: string) => void,
 }

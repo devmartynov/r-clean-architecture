@@ -5,18 +5,22 @@ import {IconButton, styled} from '@mui/material';
 import {Delete} from '@mui/icons-material';
 import {TimerStatistic} from '@/ui/pages/timer-page/timer-statistics';
 import {ITimerListProps} from '@/ui/pages/timer-page/timer-list/timer-list.types.ts';
+import {convertSecondsToHHMMSS} from '@/ui/pages/timer-page/timer-list/utils.ts';
 
 export default function TimerList({items, onDelete}: ITimerListProps) {
     return (
         <Groups>
-            {Object.entries(items).map(([date, tasks]) => (
+            {Object.entries(items).map(([date, data]) => (
                 <Group key={date}>
                     <GroupHeader>
                         {date}
-                        <TimerStatistic time='14:35' title='Всего:'/>
+                        <TimerStatistic
+                            title='Всего:'
+                            time={convertSecondsToHHMMSS(data.totalTime)}
+                        />
                     </GroupHeader>
                     <TasksList>
-                        {tasks.map(task => (
+                        {data.tasks.map(task => (
                             <Task key={task.uid}>
                                 <ListItemText
                                     primary={task.title}

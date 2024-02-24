@@ -1,11 +1,12 @@
 import {useEffect, useState} from 'react';
-import {INewTask, ITaskEntity} from '@/domain/entities/task.ts';
+import {INewTask} from '@/domain/entities/task.ts';
 import {useUseCases} from '@/ui/context/use-case.tsx';
 import {TimerList} from '@/ui/pages/timer-page/timer-list';
 import {Timer} from '@/ui/pages/timer-page/timer';
+import {IGroupedTasks} from '@/domain/use-cases/use-cases.types.ts';
 
 export default function TimerPage() {
-    const [tasks, setTasks] = useState<Record<string, ITaskEntity[]>>({});
+    const [tasks, setTasks] = useState<IGroupedTasks>({});
     const {getTasks, addTask, markTaskAsFinished, deleteTask} = useUseCases();
 
     useEffect(() => {

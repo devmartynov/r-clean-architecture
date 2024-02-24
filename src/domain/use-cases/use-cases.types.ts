@@ -1,3 +1,5 @@
+import {ITaskEntity} from '@/domain/entities/task.ts';
+
 export type IUseCases = {
     addTask: any,
     markTaskAsFinished: any,
@@ -7,3 +9,6 @@ export type IUseCases = {
     getProjects: any,
     getTasks: any,
 }
+
+type IDate = string;
+export type IGroupedTasks = Record<IDate, {totalTime: number, tasks: ITaskEntity[]}>
