@@ -45,6 +45,7 @@ export default function Timer({addTask, deleteTask, markTaskAsFinished}: ITimerP
             <Input
                 placeholder="Над чем ты работаешь?"
                 size="small"
+                value={taskName}
                 onChange={e => setTaskName(e.target.value)}
             />
             <ProjectField onClick={onProjectClick}/>
