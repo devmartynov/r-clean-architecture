@@ -1,6 +1,7 @@
 import {IGroupedTasks} from '@/domain/use-cases/use-cases.types.ts';
 import {ITasksRepository} from '@/domain/repositories/tasks-repository.ts';
 import {calcTotalTime} from '@/domain/entities/task.ts';
+import {convertTimeToYYYYMMDD} from '@/domain/utils.ts';
 
 export default function getTasksUseCase(repository: ITasksRepository) {
     return () => {
@@ -9,10 +10,7 @@ export default function getTasksUseCase(repository: ITasksRepository) {
         const groupedTasks: IGroupedTasks = {};
 
         tasks.forEach(task => {
-            const time = task.finishedAt || task.startedAt;
-            const date = new Date(time)
-                .toISOString()
-                .split('T')[0]; // Преобразование timestamp в дату в формате "гггг-мм-дд"
+            const date = convertTimeToYYYYMMDD(task.finishedAt || task.startedAt);
             if (!groupedTasks[date]) {
                 groupedTasks[date] = {totalTime: 0, tasks: []};
             }
