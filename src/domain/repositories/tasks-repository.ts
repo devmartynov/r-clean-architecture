@@ -1,9 +1,10 @@
-import {ITaskEntity} from '../entities/task.ts';
+import {INewTaskWithUserUid, ITaskEntity} from '../entities/task.ts';
 
 export type ITasksRepository = {
-    create: (task: Omit<ITaskEntity, 'uid'>) => ITaskEntity | null,
+    create: (task: INewTaskWithUserUid) => ITaskEntity | null,
     update: (taskUid: string, data: any) => ITaskEntity | null,
     delete: (uid: string) => boolean,
     getAll: () => ITaskEntity[],
+    getTodayTasks: () => ITaskEntity[],
     get: (uid: string) => ITaskEntity | null,
 }

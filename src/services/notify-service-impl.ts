@@ -7,10 +7,10 @@ export default class NotifyServiceImpl implements INotifyService {
     }
 
     error(text: string): void {
-        toast(text, {type: 'error'});
+        toast(text, {type: 'error', position: 'bottom-left'});
     }
 
     success(text: string): void {
-        toast(text, {type: 'success'});
+        toast(text, {type: 'success', position: 'bottom-left'});
     }
 }

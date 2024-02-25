@@ -26,7 +26,7 @@ export default function Timer({addTask, deleteTask, markTaskAsFinished}: ITimerP
             contextTaskRef.current = null;
         } else {
             contextTaskRef.current = addTask({
-                title: taskName || 'Без названия',
+                title: taskName || '',
                 startedAt: Date.now(),
             });
             start();

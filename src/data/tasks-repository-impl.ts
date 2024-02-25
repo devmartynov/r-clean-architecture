@@ -1,7 +1,7 @@
-import {INewTask, ITaskEntity} from '../domain/entities/task.ts';
-import {generateUid} from '../domain/utils.ts';
-import {ITasksRepository} from '../domain/repositories/tasks-repository.ts';
-import LocalStorageRepository from './local-storage-repository.ts';
+import LocalStorageRepository from '@/data/local-storage-repository.ts';
+import {ITasksRepository} from '@/domain/repositories/tasks-repository.ts';
+import {INewTask, INewTaskWithUserUid, ITaskEntity} from '@/domain/entities/task.ts';
+import {generateUid, isInToday} from '@/domain/utils.ts';
 
 export default class TasksRepositoryImpl extends LocalStorageRepository implements ITasksRepository {
     static STORAGE_KEY = 'tasks';
@@ -11,7 +11,7 @@ export default class TasksRepositoryImpl extends LocalStorageRepository implemen
         super(TasksRepositoryImpl.STORAGE_KEY);
     }
 
-    create(task: INewTask) {
+    create(task: INewTaskWithUserUid) {
         try {
             const uid = generateUid();
             const newTask = {
@@ -36,6 +36,13 @@ export default class TasksRepositoryImpl extends LocalStorageRepository implemen
             console.error('Error writing to localStorage', e);
             return false;
         }
+    }
+
+    getTodayTasks() {
+        return Object.values(this.tasks).filter(task => {
+            const time = task.finishedAt || task.startedAt;
+            return isInToday(new Date(time));
+        });
     }
 
     getAll() {

@@ -8,6 +8,8 @@ export type IUseCases = {
     deleteTask: any,
     getProjects: any,
     getTasks: any,
+    setUser: any,
+    getUser: any,
 }
 
 type IDate = string;

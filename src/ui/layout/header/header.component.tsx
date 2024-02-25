@@ -1,9 +1,11 @@
 import {Link} from 'react-router-dom';
 import {AppBar, Box, Toolbar, Typography, Button, styled} from '@mui/material';
-import {mockUser, pages} from '@/ui/layout/header/utils.ts';
+import {pages} from '@/ui/layout/header/utils.ts';
 import {User} from '@/ui/layout/user';
+import {useUseCases} from '@/ui/context/use-case.tsx';
 
 export default function Header() {
+    const {getUser} = useUseCases();
     return (
         <AppBar position="static">
             <Toolbar>
@@ -22,7 +24,7 @@ export default function Header() {
                         </NavLink>
                     ))}
                 </Box>
-                <User user={mockUser}/>
+                <User user={getUser()}/>
             </Toolbar>
         </AppBar>
     );

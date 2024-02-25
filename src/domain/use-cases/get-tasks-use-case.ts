@@ -1,18 +1,8 @@
 import {IGroupedTasks} from '@/domain/use-cases/use-cases.types.ts';
 import {ITasksRepository} from '@/domain/repositories/tasks-repository.ts';
-import {ITaskEntity} from '@/domain/entities/task.ts';
+import {calcTotalTime} from '@/domain/entities/task.ts';
 
 export default function getTasksUseCase(repository: ITasksRepository) {
-    const calcTotalTime = (tasks: ITaskEntity[]) => {
-        return tasks.reduce((time, task) => {
-            if (!task.finishedAt) {
-                return time;
-            }
-            time += (task.finishedAt - task.startedAt) / 1000;
-            return time
-        }, 0);
-    }
-
     return () => {
         const tasks =  repository.getAll();
 

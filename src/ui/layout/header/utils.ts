@@ -1,4 +1,4 @@
-import {IUserEntity} from '../../../domain/entities/user.ts';
+import {IUserEntity} from '@/domain/entities/user.ts';
 
 export const pages = [
     {
@@ -16,7 +16,11 @@ export const pages = [
 ];
 
 export const mockUser: IUserEntity = {
-    id: '1',
+    uid: '1',
     name: 'Денис',
     email: 'denis@ya.ru',
+    restrictions: {
+        time: 3000,
+        dayTime: 4000,
+    }
 }
