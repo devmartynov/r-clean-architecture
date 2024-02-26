@@ -16,6 +16,6 @@ export default function deleteProjectUseCase(
             throw new Error('Project has tasks');
         }
 
-        projectRepository.delete(projectUid);
+        return projectRepository.delete(projectUid);
     }
 }
